@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Movie Recommender</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
+                        url("{{ url_for('static', filename='images/background.jpg') }}");
+            background-size: cover;
+            background-position: center;
+            color: white;
+        }
+
+        .container {
+            padding: 60px;
+        }
+
+        h1 {
+            font-size: 48px;
+            font-weight: bold;
+        }
+
+        .search-box {
+            margin-top: 20px;
+        }
+
+        input[type="text"] {
+            width: 60%;
+            padding: 15px;
+            font-size: 18px;
+            border-radius: 5px;
+            border: none;
+        }
+
+        button {
+            padding: 15px 25px;
+            font-size: 18px;
+            background-color: #e50914;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #b20710;
+        }
+
+        .movies {
+            margin-top: 40px;
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .movie-card {
+            text-align: center;
+        }
+
+        .movie-card img {
+            width: 180px;
+            height: 250px;
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+
+        .movie-card img:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Movie Recommender System</h1>
+        <p>What are you looking for today?</p>
+
+        <form method="post" class="search-box">
+            <input type="text" name="movie" placeholder="Enter movie name" required>
+            <button type="submit">Recommend</button>
+        </form>
+
+        
+    </div>{% if movies %}
+    <div class="movies">
+        {% for i in range(movies|length) %}
+        <div class="movie-card">
+            <h3>{{ movies[i] }}</h3>
+            <img src="{{ posters[i] }}" width="200">
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    <div class="watermark">Made by Naikini Pranay</div>
+
+<style>
+.watermark {
+    position: fixed;
+    bottom: 15px;
+    right: 20px;
+    font-size: 14px;
+    color: red;
+    opacity: 1;
+    font-weight: 700;
+    z-index: 9999;
+}
+</style>
+</body>
+</html>
